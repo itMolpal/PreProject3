@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit User</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Установка шрифта для всего тела */
+            margin: 0; /* Удаление внешних отступов */
+            padding: 20px; /* Внутренние отступы */
+            display: flex; /* Используем Flexbox для центрирования */
+            justify-content: center; /* Центрирование по горизонтали */
+            align-items: center; /* Центрирование по вертикали */
+            height: 100vh; /* Высота тела равна высоте экрана */
+            background-color: #f0f0f0; /* Фоновый цвет */
+        }
+
+        .container {
+            width: 100%; /* Ширина контейнера 100% */
+            max-width: 400px; /* Максимальная ширина формы */
+            padding: 20px; /* Внутренние отступы */
+            border: 1px solid #ccc; /* Граница формы */
+            border-radius: 10px; /* Закругление углов */
+            background-color: #fff; /* Фон формы */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень */
+        }
+
+        .button {
+            display: block; /* Кнопка занимает всю ширину своего контейнера */
+            width: calc(100% - 12px); /* Учитываем внутренние отступы */
+            padding: 10px; /* Внутренние отступы */
+            font-size: 13px; /* Размер шрифта */
+            cursor: pointer; /* Указатель при наведении */
+            text-align: center; /* Выравнивание текста по центру */
+            text-decoration: none; /* Удаление подчеркивания */
+            outline: none; /* Удаление обводки */
+            color: #fff; /* Цвет текста */
+            background-color: #82ccde; /* Цвет фона кнопок */
+            border: none; /* Удаление границы */
+            border-radius: 15px; /* Закругление углов кнопок */
+            margin-top: 10px; /* Отступ сверху */
+            box-sizing: border-box; /* Учет границы и отступов в ширине */
+        }
+
+        .button:hover {
+            background-color: #73b6d2; /* Цвет при наведении */
+        }
+
+        .button:active {
+            background-color: #73b6d2; /* Цвет при нажатии */
+            transform: translateY(2px); /* Легкое смещение при нажатии */
+        }
+
+        label {
+            display: block; /* Отображение меток как блоки */
+            margin-top: 10px; /* Отступ сверху */
+            text-align: center; /* Выравнивание текста метки по центру */
+        }
+
+        input {
+            width: 100%; /* Поля ввода на всю ширину */
+            padding: 8px; /* Внутренние отступы */
+            margin-top: 5px; /* Отступ сверху */
+            border: 1px solid #ccc; /* Граница */
+            border-radius: 5px; /* Закругление углов */
+            box-sizing: border-box; /* Включение границы и отступов в ширину */
+        }
+
+        div.errors {
+            color: red; /* Цвет ошибок */
+            margin-top: 5px; /* Отступ сверху */
+            text-align: center; /* Выравнивание текста ошибок по центру */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Edit User</h1>
+    <form th:action="@{/users/{id}(id=${user.id})}" th:object="${user}" method="post">
+        <input type="hidden" name="_method" value="patch"/>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}"/>
+        <div class="errors" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" th:field="*{lastName}"/>
+        <div class="errors" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" th:field="*{age}"/>
+        <div class="errors" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+
+        <button type="submit" class="button">Update</button>
+    </form>
+    <br/>
+    <a th:href="@{/users}" class="button">Back to Users List</a>
+</div>
+</body>
+</html>

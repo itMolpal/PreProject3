@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New User</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Выравнивание по высоте экрана */
+            margin: 0; /* Удаление отступов */
+            background-color: #f4f4f4; /* Фон для лучшего контраста */
+        }
+
+        .container {
+            background-color: white; /* Фон для контейнера */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px; /* Ширина контейнера */
+        }
+
+        .button {
+            display: block; /* Изменено на блок для одинакового размера */
+            padding: 10px 0; /* Внутренние отступы */
+            font-size: 13px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px; /* Обновлено для более округлых углов */
+            width: 100%; /* Зададим ширину 100% */
+            margin-top: 10px; /* Отступ сверху */
+        }
+
+        .button:hover {
+            background-color: #3e8e41;
+        }
+
+        .button:active {
+            background-color: #3e8e41;
+            transform: translateY(4px);
+        }
+
+        label {
+            display: block; /* Отображение меток как блоки */
+            margin-top: 10px; /* Отступ сверху */
+        }
+
+        input {
+            width: 100%; /* Поля ввода на всю ширину контейнера */
+            padding: 8px; /* Внутренние отступы */
+            margin-top: 5px; /* Отступ сверху */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        div.errors {
+            color: red;
+            margin-top: 5px; /* Отступ сверху для ошибок */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Create New User</h1>
+    <form th:action="@{/users}" th:object="${user}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" />
+        <div class="errors" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" th:field="*{lastName}" />
+        <div class="errors" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" th:field="*{age}" />
+        <div class="errors" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+
+        <button type="submit" class="button">Save</button>
+    </form>
+    <a th:href="@{/users}" class="button">Back to Users List</a>
+</div>
+</body>
+</html>

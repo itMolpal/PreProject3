@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Задайте шрифт для читаемости */
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4; /* Цвет фона для улучшения визуального восприятия */
+            text-align: center; /* Выравнивание текста по центру */
+        }
+
+        h1 {
+            margin-bottom: 20px; /* Отступ снизу для заголовка */
+        }
+
+        p {
+            font-size: 18px; /* Размер шрифта для параграфов */
+            margin: 10px 0; /* Отступы для параграфов */
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 13px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #82ccde;
+            border: none;
+            border-radius: 15px;
+            margin-top: 20px; /* Отступ сверху для кнопки */
+        }
+
+        .button:hover {
+            background-color: #82ccde;
+        }
+
+        .button:active {
+            background-color: #82ccde;
+            transform: translateY(4px);
+        }
+    </style>
+</head>
+<body>
+<h1>User Details</h1>
+<p>ID: <span th:text="${user.id}"></span></p>
+<p>Name: <span th:text="${user.name}"></span></p>
+<p>Last Name: <span th:text="${user.lastName}"></span></p>
+<p>Age: <span th:text="${user.age}"></span></p>
+<a th:href="@{/users}" class="button">Back to Users List</a>
+</body>
+</html>
